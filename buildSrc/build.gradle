@@ -1,10 +1,14 @@
 plugins {
 	id "java-gradle-plugin"
 	id "io.spring.javaformat" version "${javaFormatVersion}"
-	id "checkstyle"
+//	id "checkstyle"
 }
 
 repositories {
+	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+	maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+	maven { url 'https://maven.aliyun.com/repository/google' }
+	maven { url 'https://maven.aliyun.com/repository/spring' }
 	mavenCentral()
 	gradlePluginPortal()
 	maven { url "https://repo.spring.io/release" }
@@ -14,7 +18,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	checkstyle "io.spring.javaformat:spring-javaformat-checkstyle:${javaFormatVersion}"
+//	checkstyle "io.spring.javaformat:spring-javaformat-checkstyle:${javaFormatVersion}"
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.10.0")
 	implementation("commons-codec:commons-codec:1.13")
 	implementation("org.apache.maven:maven-embedder:3.6.2")
@@ -30,11 +34,11 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
 }
 
-checkstyle {
-	def archive = configurations.checkstyle.filter { it.name.startsWith("spring-javaformat-checkstyle")}
-	config = resources.text.fromArchiveEntry(archive, "io/spring/javaformat/checkstyle/checkstyle.xml")
-	toolVersion = 8.11
-}
+//checkstyle {
+//	def archive = configurations.checkstyle.filter { it.name.startsWith("spring-javaformat-checkstyle")}
+//	config = resources.text.fromArchiveEntry(archive, "io/spring/javaformat/checkstyle/checkstyle.xml")
+//	toolVersion = 8.11
+//}
 
 gradlePlugin {
 	plugins {
