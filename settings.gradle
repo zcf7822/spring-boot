@@ -4,15 +4,16 @@ pluginManagement {
 		maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
 		maven { url 'https://maven.aliyun.com/repository/google' }
 		maven { url 'https://maven.aliyun.com/repository/spring' }
+		maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
 
-		mavenCentral()
+//		mavenCentral()
 		gradlePluginPortal()
 		maven {
 			url 'https://repo.spring.io/plugins-release'
 		}
-		if (version.endsWith('-SNAPSHOT')) {
-			maven { url "https://repo.spring.io/snapshot" }
-		}
+//		if (version.endsWith('-SNAPSHOT')) {
+//			maven { url "https://repo.spring.io/snapshot" }
+//		}
 	}
 	resolutionStrategy {
 		eachPlugin {

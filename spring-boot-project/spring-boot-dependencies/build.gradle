@@ -4,6 +4,32 @@ plugins {
 	id "org.springframework.boot.deployed"
 }
 
+allprojects {
+
+	repositories {
+		def REPOSITORY_URL = 'http://maven.aliyun.com/nexus/content/groups/public/'
+		all { ArtifactRepository repo ->
+			def url = repo.url.toString()
+			if ((repo instanceof MavenArtifactRepository) && (url.startsWith('https://repo1.maven.org/maven2') || url.startsWith('https://jcenter.bintray.com'))) {
+				project.logger.lifecycle 'Repository ${repo.url} replaced by $REPOSITORY_URL .'
+				remove repo
+			}
+		}
+		maven {
+			url REPOSITORY_URL
+		}
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+		maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+		maven { url 'https://maven.aliyun.com/repository/google' }
+		maven { url 'https://maven.aliyun.com/repository/spring' }
+		maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+		maven { url 'https://repo.gradle.org/gradle/libs-releases-loca' }
+//	mavenCentral()
+		gradlePluginPortal()
+//	maven { url "https://repo.spring.io/release" }
+	}
+}
+
 description = "Spring Boot Dependencies"
 
 bom {
